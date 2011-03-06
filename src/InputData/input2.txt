@@ -1,0 +1,13 @@
+Productions:
+r1: A,B -> Z
+r2: A -> B
+r3: B -> C
+r4: A,C -> Z
+
+Data:
+A
+
+Goal:
+Z
+
+# atsakymas {r2, r1}
