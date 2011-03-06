@@ -1,0 +1,10 @@
+Productions:
+# empty line
+R1: A -> A
+R2: B -> B
+# empty line
+Data:
+A, B
+# empty line
+Goal:
+A
