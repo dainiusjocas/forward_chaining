@@ -25,6 +25,9 @@ public class ListOfImplications {
         }
     }
 
+    public ArrayList getListOfImpliccations() {
+        return this.listOfImplications;
+    }
     /**
      * Method which adds implication to the list of implications
      * @param implication

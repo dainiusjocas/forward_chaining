@@ -1,10 +1,10 @@
 Productions:
-r1: A,B -> Z
+r1: A, B -> Z
 r2: A -> B
 r3: B -> C
-r4: A,C -> Z
+r4: A, C -> Z
 
-Data:
+Facts:
 A
 
 Goal:

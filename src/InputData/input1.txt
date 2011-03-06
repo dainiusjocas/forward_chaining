@@ -1,9 +1,9 @@
 Productions:
-R1: A -> A
-R2: B -> B
+R1: A -> B
+R2: B -> Z
 
 Facts:
-A, B
+A
 
 Goal:
 Z

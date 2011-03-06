@@ -66,4 +66,20 @@ public class Implication {
     public String toString() {
         return this.descriptor + ": " + this.antecedent + " -> " + this.consequence;
     }
+
+    /**
+     * Method to check if we have enough facts to prove implication.
+     * @param facts
+     * @return
+     */
+    public boolean isConsequenceProvable(Facts facts) {
+        String[] splittedAntecedent = this.antecedent.split(",");
+        boolean provable = true;
+        for (String a : splittedAntecedent) {
+            if (!facts.searchForFact(a.trim())) {
+                provable = false;
+            }
+        }
+        return provable;
+    }
 }

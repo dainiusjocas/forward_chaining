@@ -90,4 +90,54 @@ public class ImplicationTest {
         String result = this.instance.getConsequence();
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testIsConsequenceProvable1() {
+        String implication = "R1: A -> B";
+        instance = new Implication(implication);
+        Facts facts = new Facts("A, B, C");
+        boolean expectedResult = true;
+        boolean result = instance.isConsequenceProvable(facts);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsConsequenceProvable2() {
+        String implication = "R1: A -> B";
+        instance = new Implication(implication);
+        Facts facts = new Facts("A");
+        boolean expectedResult = true;
+        boolean result = instance.isConsequenceProvable(facts);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsConsequenceProvable3() {
+        String implication = "R1: A -> B";
+        instance = new Implication(implication);
+        Facts facts = new Facts("B");
+        boolean expectedResult = false;
+        boolean result = instance.isConsequenceProvable(facts);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsConsequenceProvable4() {
+        String implication = "R1: A, B -> C";
+        instance = new Implication(implication);
+        Facts facts = new Facts("A, B");
+        boolean expectedResult = true;
+        boolean result = instance.isConsequenceProvable(facts);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsConsequenceProvable5() {
+        String implication = "R1: A, B -> C";
+        instance = new Implication(implication);
+        Facts facts = new Facts("A, C");
+        boolean expectedResult = false;
+        boolean result = instance.isConsequenceProvable(facts);
+        assertEquals(expectedResult, result);
+    }
 }

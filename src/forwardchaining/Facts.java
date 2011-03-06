@@ -38,11 +38,12 @@ public class Facts {
        this.facts.add(fact);
    }
 
-   public void printFacts() {
-       System.out.println("List of facts:");
+   public String getListOfFacts() {
+       String stringOfFacts = "";
        for (String s : this.facts) {
-           System.out.println(s);
+           stringOfFacts += s + ", ";
        }
+       return stringOfFacts.substring(0, stringOfFacts.length() - 2);
    }
 
 }
