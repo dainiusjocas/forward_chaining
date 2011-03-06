@@ -1,15 +1,17 @@
 Productions:
 # empty line
-R1: A -> A
-R2: B -> B
+
+
+    R1: A -> A
+  R2: B -> B
 # empty line
 Data:
 
 
 
-A, B
+                A, B
 
 
 # empty line
 Goal:
-A
+            A
