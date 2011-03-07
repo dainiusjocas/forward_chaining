@@ -25,7 +25,7 @@ public class ListOfImplications {
         }
     }
 
-    public ArrayList getListOfImpliccations() {
+    public ArrayList getListOfImplications() {
         return this.listOfImplications;
     }
     /**

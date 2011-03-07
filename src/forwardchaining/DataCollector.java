@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package forwardchaining;
 
 import java.io.BufferedReader;
@@ -14,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * This class is for reading input file with following rules.
- * @author dj
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class DataCollector {
     public static String TERMINAL_WORD_FOR_PRODUCTIONS = "productions:";
@@ -32,7 +27,6 @@ public class DataCollector {
      * @param fileURI - URI of the file
      */
     public DataCollector(String fileURI) {
-        fileURI = "src/InputData/input1.txt"; /* TODO: delete this line */
         try {
             bufferedReader = new BufferedReader(new FileReader(new File
                     (fileURI)));
@@ -47,8 +41,9 @@ public class DataCollector {
     }
 
     /**
-     * Gets lines where are facts for the forward chaining.
+     * Gets string representation of the facts.
      * @throws IOException
+     * @return string representation of the facts.
      */
     public String collectFacts() throws IOException {
         this.bufferedReader.reset();
@@ -68,7 +63,12 @@ public class DataCollector {
         return facts;
     }
 
-    public ArrayList collectProductions() throws IOException {
+    /**
+     * This method parses data input file and makes list of implications.
+     * @return
+     * @throws IOException
+     */
+    public ArrayList collectImplications() throws IOException {
         this.bufferedReader.reset();
         String temp = "";
         ArrayList listOfImplications = new ArrayList();
@@ -106,6 +106,7 @@ public class DataCollector {
     /**
      * Method which skips all the empty lines in the file and returns first not
      * empty line.
+     * @return string which represent some useful data from the input file
      */
     private String getFirstNotEmptyLine() throws IOException {
         String temporaryLine;

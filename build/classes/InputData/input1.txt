@@ -1,0 +1,9 @@
+Productions:
+R1: A -> B
+R2: B -> Z
+
+Facts:
+A
+
+Goal:
+Z

@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package forwardchaining;
 
 /**
- * Data structure for storing implication.
- * @author dj
+ * Data structure for storing one implication.
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class Implication {
     private String descriptor;
@@ -62,11 +57,6 @@ public class Implication {
         return this.consequence;
     }
 
-    @Override
-    public String toString() {
-        return this.descriptor + ": " + this.antecedent + " -> " + this.consequence;
-    }
-
     /**
      * Method to check if we have enough facts to prove implication.
      * @param facts
@@ -81,5 +71,10 @@ public class Implication {
             }
         }
         return provable;
+    }
+
+    @Override
+    public String toString() {
+        return this.descriptor + ": " + this.antecedent + " -> " + this.consequence;
     }
 }
