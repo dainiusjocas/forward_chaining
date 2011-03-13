@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class is for reading input file with following rules.
@@ -45,10 +46,10 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
      * @throws IOException
      * @return string representation of the facts.
      */
-    public String collectFacts() throws IOException {
-        this.bufferedReader.reset();
+    public ArrayList collectFacts() throws IOException {
+        putCursorToTheBeginningOfTheFile();
         String temp = "";
-        String facts = "";
+        String factsInString = "";
         do {
             temp = this.bufferedReader.readLine();
         } while (!temp.toLowerCase().contains(DataCollectorFromPlainTextFiles.
@@ -57,10 +58,20 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
         while ((temp != null) && (!temp.isEmpty()) &&
                         (temp.charAt(0) != DataCollectorFromPlainTextFiles.
                         TERMINAL_SYMBOL_FOR_COMMENT)) {
-            facts = facts + temp;
+            factsInString = factsInString + temp;
             temp = this.bufferedReader.readLine();
         }
-        return facts;
+        return makeArrayListOfFactsInString(factsInString);
+    }
+
+    /**
+     * This method extracts facts from the string representation of the facts.
+     * @param facts
+     */
+    private ArrayList makeArrayListOfFactsInString(String facts) {
+        facts = facts.replaceAll(" ", "");
+        String[] temp = facts.split(",");
+        return new ArrayList<String>(Arrays.asList(temp));
     }
 
     /**
@@ -69,7 +80,7 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
      * @throws IOException
      */
     public ArrayList collectImplications() throws IOException {
-        this.bufferedReader.reset();
+        putCursorToTheBeginningOfTheFile();
         String temp = "";
         ArrayList listOfImplications = new ArrayList();
         do {
@@ -92,7 +103,7 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
      * @throws IOException
      */
     public String collectGoal() throws IOException {
-        this.bufferedReader.reset();
+        putCursorToTheBeginningOfTheFile();
         String temp = "";
         String goal = "";
         do {
@@ -116,5 +127,14 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
                 (temporaryLine.charAt(0) == DataCollectorFromPlainTextFiles.
                 TERMINAL_SYMBOL_FOR_COMMENT));
         return temporaryLine;
+    }
+
+    /**
+     * This method puts cursor to the beginning of the file where is the data
+     * for the program.
+     * @throws IOException
+     */
+    private void putCursorToTheBeginningOfTheFile() throws IOException {
+        this.bufferedReader.reset();
     }
 }

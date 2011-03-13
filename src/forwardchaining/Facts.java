@@ -13,20 +13,8 @@ public class Facts {
      * Constructor loads and fills data structures
      * @param facts
      */
-    public Facts(String facts) {
-        this.facts = new ArrayList();
-        this.extractFacts(facts);
-    }
-
-    /**
-     * This method extracts facts from the string representation of the facts.
-     * @param facts
-     */
-    private void extractFacts(String facts) {
-        String[] moo = facts.split(",");
-        for (String s: moo) {
-            this.facts.add(s.trim());
-        }
+    public Facts(ArrayList facts) {
+        this.facts = facts;
     }
 
     /**

@@ -19,7 +19,8 @@
         </implication>
     </implications>
     <facts>
-        <fact>A, Z</fact>
+        <fact>A</fact>
+        <fact>Z</fact>
     </facts>
     <goal>Z</goal>
 </data>

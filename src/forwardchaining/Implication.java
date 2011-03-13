@@ -9,7 +9,11 @@ public class Implication {
     private String antecedent;
     private String consequent;
 
-
+    /**
+     * This constructor expects to get a string where one string is in format:
+     * [descriptor]: [<[antecedent1], [antecedent2], ..> [consequent]
+     * @param Implication
+     */
     public Implication(String Implication) {
         this.id = this.extractDescriptor(Implication);
         this.antecedent = this.extractAntecedent(Implication);
