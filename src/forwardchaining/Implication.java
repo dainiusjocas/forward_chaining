@@ -5,21 +5,21 @@ package forwardchaining;
  * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class Implication {
-    private String descriptor;
+    private String id;
     private String antecedent;
-    private String consequence;
+    private String consequent;
 
 
     public Implication(String Implication) {
-        this.descriptor = this.extractDescriptor(Implication);
+        this.id = this.extractDescriptor(Implication);
         this.antecedent = this.extractAntecedent(Implication);
-        this.consequence = this.extractConsequence(Implication);
+        this.consequent = this.extractConsequence(Implication);
     }
 
     /**
-     * Method which extracts descriptor part of the implication.
+     * Method which extracts id part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractDescriptor(String implication) {
         return implication.split(":")[0];
@@ -28,16 +28,16 @@ public class Implication {
     /**
      * Method which extracts antecedent part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractAntecedent(String implication) {
         return implication.split("->")[0].split(":")[1].trim();
     }
 
     /**
-     * Method which extracts consequence part of the implication.
+     * Method which extracts consequent part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractConsequence(String implication) {
         return implication.split("->")[1].trim();
@@ -48,13 +48,13 @@ public class Implication {
      * @return
      */
     public String getDescriptor() {
-        return this.descriptor;
+        return this.id;
     }
     public String getAntecedent() {
         return this.antecedent;
     }
     public String getConsequence() {
-        return this.consequence;
+        return this.consequent;
     }
 
     /**
@@ -75,6 +75,6 @@ public class Implication {
 
     @Override
     public String toString() {
-        return this.descriptor + ": " + this.antecedent + " -> " + this.consequence;
+        return this.id + ": " + this.antecedent + " -> " + this.consequent;
     }
 }

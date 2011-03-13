@@ -1,3 +1,4 @@
+# Author: Dainius Jocas, VU MIF, PS#3, 3rd year
 Productions:
 R1: A -> Z
 

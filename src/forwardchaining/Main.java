@@ -11,7 +11,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Program starts to work:\n");
+        System.out.println("Program that demonstrates the way that forward " +
+                "chaining works starts to work:\n");
         String fileURI = args[0];//"src/InputData/input4.txt";
         try{
             DataCollector dc = new DataCollector(fileURI);

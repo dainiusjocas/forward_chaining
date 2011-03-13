@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 2_no_derivation.xml
+    Created on : March 13, 2011, 11:43 AM
+    Author     : Dainius Jocas, VU MIF, PS#3, 3rd years
+    Description:
+        Data input file for first excersice of the "Artificial Inteligence"
+        course. In this file we will place simple example of system of
+        productions which is not derivable.
+-->
+
+<!DOCTYPE data SYSTEM "InputDescription.dtd">
+<data>
+    <implications>
+        <implication id="R1">
+            <antecedent>A</antecedent>
+            <consequent>B</consequent>
+        </implication>
+    </implications>
+    <facts>
+        <fact>A</fact>
+    </facts>
+    <goal>Z</goal>
+</data>

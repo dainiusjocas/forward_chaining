@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * This interface describes the way that data readers should collect data.
- * @author Dainius
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd years
  */
 public interface DataReader {
 

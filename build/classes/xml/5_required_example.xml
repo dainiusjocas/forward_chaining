@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : 5_required_example.xml
+    Created on : March 13, 2011, 11:43 AM
+    Author     : Dainius Jocas, VU MIF, PS#3, 3rd year
+    Description:
+        Data input file for first excersice of the "Artificial Inteligence"
+        course. In this file we will place required example with which we'll
+        chech if the sequence of the derivation iis correct.
+-->
+
+<!DOCTYPE data SYSTEM "InputDescription.dtd">
+<data>
+    <implications>
+        <implication id="R1">
+            <antecedent>A</antecedent>
+            <antecedent>B</antecedent>
+            <consequent>Z</consequent>
+        </implication>
+        <implication id="R2">
+            <antecedent>A</antecedent>
+            <consequent>B</consequent>
+        </implication>
+        <implication id="R3">
+            <antecedent>B</antecedent>
+            <consequent>C</consequent>
+        </implication>
+        <implication id="R4">
+            <antecedent>A</antecedent>
+            <antecedent>C</antecedent>
+            <consequent>Z</consequent>
+        </implication>
+    </implications>
+    <facts>
+        <fact>A</fact>
+    </facts>
+    <goal>Z</goal>
+</data>
