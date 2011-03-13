@@ -15,7 +15,7 @@ public class Main {
                 "chaining works starts to work:\n");
         String fileURI = args[0];//"src/InputData/input4.txt";
         try{
-            DataCollector dc = new DataCollector(fileURI);
+            DataCollector dc = new DataCollectorFromPlainTextFiles(fileURI);
             Facts facts = new Facts(dc.collectFacts());
             String goal = dc.collectGoal();
             ListOfImplications loi = 
