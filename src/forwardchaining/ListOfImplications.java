@@ -14,7 +14,7 @@ public class ListOfImplications {
      * @param listOfImplications
      */
     public ListOfImplications(ArrayList<String> listOfImplications) {
-        this.listOfImplications = new <Implication>ArrayList();
+        this.listOfImplications = new ArrayList();
         for (String implication : listOfImplications) {
             this.addImplication(implication);
         }

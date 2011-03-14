@@ -49,7 +49,7 @@ public class DataCollectorFromXML implements DataCollector {
      * @throws IOException
      */
     public ArrayList collectFacts() throws IOException {
-        ArrayList<String> facts = new <String>ArrayList();
+        ArrayList<String> facts = new ArrayList();
         NodeList listOfFacts = dataDocument.getElementsByTagName(NAME_OF_FACT_TAG);
         for (int i = 0; i < listOfFacts.getLength(); i++) {
             facts.add(listOfFacts.item(i).getTextContent());
@@ -65,7 +65,7 @@ public class DataCollectorFromXML implements DataCollector {
      * @throws IOException
      */
     public ArrayList collectImplications() throws IOException {
-        ArrayList<String> implications = new <String>ArrayList();
+        ArrayList<String> implications = new ArrayList();
         String implication = "";
         NodeList listOfImplications = dataDocument.
                 getElementsByTagName(NAME_OF_IMPLICATION_TAG);
