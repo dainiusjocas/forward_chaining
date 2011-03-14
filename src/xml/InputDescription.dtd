@@ -12,29 +12,14 @@
     </data>
 -->
 
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT data (goal|facts|implications)*>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT implications (implication)*>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT implication (consequent|antecedent)*>
 <!ATTLIST implication
     id CDATA #IMPLIED
   >
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT antecedent (#PCDATA)>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT consequent (#PCDATA)>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT facts (fact)*>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT fact (#PCDATA)>
-
-<!--- Put your DTDDoc comment here. -->
 <!ELEMENT goal (#PCDATA)>
