@@ -13,12 +13,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Program that demonstrates the way that forward " +
                 "chaining works starts to work:\n");
-        String fileURI = "src/InputData/input3.txt"; //args[0];//
+        String fileURI = "src/InputData/input5.txt"; //args[0];//
         try{
             DataCollector dc = new DataCollectorFromPlainTextFiles(fileURI);
             Facts facts = new Facts(dc.collectFacts());
             String goal = dc.collectGoal();
-            ListOfImplications loi = 
+            ListOfImplications loi =
                     new ListOfImplications(dc.collectImplications());
             System.out.println("Data for the program has been taken from " +
                     fileURI + " file.\n");

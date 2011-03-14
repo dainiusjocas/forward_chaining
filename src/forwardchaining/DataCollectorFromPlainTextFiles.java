@@ -54,12 +54,12 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
             temp = this.bufferedReader.readLine();
         } while (!temp.toLowerCase().contains(DataCollectorFromPlainTextFiles.
                 TERMINAL_WORD_FOR_FACTS));
-        temp = getFirstNotEmptyLine();
+        temp = removeComments(getFirstNotEmptyLine());
         while ((temp != null) && (!temp.isEmpty()) &&
                         (temp.charAt(0) != DataCollectorFromPlainTextFiles.
                         TERMINAL_SYMBOL_FOR_COMMENT)) {
             factsInString = factsInString + temp;
-            temp = this.bufferedReader.readLine();
+            temp = removeComments(this.bufferedReader.readLine());
         }
         return makeArrayListOfFactsInString(factsInString);
     }
@@ -87,12 +87,12 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
             temp = this.bufferedReader.readLine();
         } while (!temp.toLowerCase().contains(DataCollectorFromPlainTextFiles.
                 TERMINAL_WORD_FOR_PRODUCTIONS));
-        temp = getFirstNotEmptyLine();
+        temp = removeComments(getFirstNotEmptyLine());
         while ((temp != null) && (!temp.isEmpty()) &&
                         (temp.charAt(0) != DataCollectorFromPlainTextFiles.
                         TERMINAL_SYMBOL_FOR_COMMENT)) {
             listOfImplications.add(temp.trim());
-            temp = this.bufferedReader.readLine();
+            temp = removeComments(this.bufferedReader.readLine());
         }
         return listOfImplications;
     }
@@ -111,7 +111,7 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
         } while (!temp.toLowerCase().contains(DataCollectorFromPlainTextFiles.
                 TERMINAL_WORD_FOR_GOAL));
         goal = getFirstNotEmptyLine();
-        return goal;
+        return removeComments(goal);
     }
 
     /**
@@ -136,6 +136,19 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
      */
     private void putCursorToTheBeginningOfTheFile() throws IOException {
         this.bufferedReader.reset();
+    }
+
+    /**
+     * This function - if such exists - throws away commented part of the line
+     * @param line
+     * @return string without commented part
+     */
+    private String removeComments(String line) {
+        int commentStartsAt = line.indexOf(TERMINAL_SYMBOL_FOR_COMMENT);
+        if (-1 != commentStartsAt) {
+            return line.substring(0, commentStartsAt);
+        }
+        return line;
     }
     
 }

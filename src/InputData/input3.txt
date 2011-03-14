@@ -1,12 +1,12 @@
 # Author: Dainius Jocas, VU MIF, PS#3, 3rd year
 Productions:
-R1: D, C -> Z
+R1: D, C -> Z# comment
 R2: C -> D
 R3: B -> C
 R4: A -> B
 R5: D -> A
 R6: T -> D
-R7: G -> A
+R7: G -> A 
 R8: H -> B
 R9: J -> C
 
