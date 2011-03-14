@@ -18,7 +18,7 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
     public static String TERMINAL_WORD_FOR_GOAL = "goal:";
     public static char TERMINAL_SYMBOL_FOR_COMMENT = '#';
 
-
+    /* In this variable data input file descriptor is loaded */
     private BufferedReader bufferedReader;
 
     /**
@@ -137,4 +137,5 @@ public class DataCollectorFromPlainTextFiles implements DataCollector{
     private void putCursorToTheBeginningOfTheFile() throws IOException {
         this.bufferedReader.reset();
     }
+    
 }

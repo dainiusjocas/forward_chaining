@@ -23,7 +23,7 @@ public class Client {
             if (dm.doForwardChaining()) {
                 System.out.println("GOAL IS REACHED!\n" + "Final list of facts is: "
                     + dm.getListOfFacts());
-                System.out.println("Answer: " + dm.getCurrentPlan());
+                System.out.println("Production System: " + dm.getCurrentProductionSystem());
             } else {
                 System.out.println("The goal is not reached.");
             }

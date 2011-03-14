@@ -3,7 +3,7 @@ Productions:
 R1: A -> Z
 
 Facts:
-A, B
+A, Z
 
 Goal:
 Z

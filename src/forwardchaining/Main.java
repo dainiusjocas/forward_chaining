@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Program that demonstrates the way that forward " +
                 "chaining works starts to work:\n");
-        String fileURI = args[0];//"src/InputData/input4.txt";
+        String fileURI = "src/InputData/input3.txt"; //args[0];//
         try{
             DataCollector dc = new DataCollectorFromPlainTextFiles(fileURI);
             Facts facts = new Facts(dc.collectFacts());
@@ -27,7 +27,7 @@ public class Main {
             if (dm.doForwardChaining()) {
                 System.out.println("GOAL IS REACHED!\n" + "Final list of facts is: "
                     + dm.getListOfFacts());
-                System.out.println("Answer: " + dm.getCurrentPlan());
+                System.out.println("Production system: " + dm.getCurrentProductionSystem());
             } else {
                 System.out.println("The goal is not reached.");
             }

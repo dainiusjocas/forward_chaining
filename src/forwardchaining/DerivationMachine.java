@@ -8,65 +8,79 @@ import java.util.ArrayList;
  * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class DerivationMachine {
-    ArrayList <Implication> listOfImplications;
+    /* Data structures used in application */
+    ListOfImplications listOfImplications;
     Facts facts;
-    ArrayList <String> plan;
+    ArrayList <String> productionSystem;
     private String goal;
 
     /**
      * Constructor whicl loads data structures of the class.
-     * @param listOfImplications
-     * @param facts
+     * @param listOfImplications object of ListOfImplications
+     * @param facts list of facts
      * @param goal
      */
     public DerivationMachine(ListOfImplications listOfImplications, Facts facts,
             String goal) {
-        this.listOfImplications = listOfImplications.getListOfImplications();
+        this.listOfImplications = listOfImplications;
         this.facts = facts;
         this.goal = goal;
-        this.plan = new ArrayList();
+        this.productionSystem = new ArrayList();
     }
 
     /**
      * This method implements forward chaining rule.
-     * @return
+     * @return true if goal was reached, otherwise false
      */
     public boolean doForwardChaining() {
         boolean changed = false;
-        boolean haveGoal = false; /* if true - the work is done */
+        boolean goalReached = false; /* if true - the work is done */
         int step_index = 0;       /* counter of steps taken */
-        do {
-            changed = false;
-            if (isGoalReached() == true) {
-                haveGoal = true;
-            } else {
-                for (Implication im : this.listOfImplications) {
-                    if (!(this.plan.contains(im.getDescriptor())) &&
-                            (true == im.isConsequenceProvable(this.facts))) {
-                        this.facts.addFact(im.getConsequence());
+        if (!(goalReached = isGoalReached()) == true) {
+            do {                                                                /* 1 */
+                changed = false;
+                for (Object im : this.listOfImplications.                       /* 2 */
+                        getListOfImplications()) {
+                    Implication imp = (Implication)im;
+                    if (!(this.productionSystem.contains(imp.getDescriptor()))  /* 3 */
+                           && (isMemoryToBeChanged(imp))) {
+                        this.facts.addFact(imp.getConsequence());
+                        this.productionSystem.add(imp.getDescriptor());         /* 4 */
+                        this.listOfImplications.removeImplication(imp);         /* 5 */
                         changed = true;
-                        this.plan.add(im.getDescriptor());
-                        break;
-                    }
+                        goalReached = isGoalReached();
+                        break;                                                  /* 6 */
+                    }                                                           /* 7 */
+                }                                                               /* 8 */
+                if (changed) {                                                  /* log of application*/
+                    showStepInfo(++step_index, this.facts.getListOfFacts(),
+                        getCurrentProductionSystem());
                 }
-                step_index++;
-                if (changed) {
-                    showStepInfo(step_index, this.facts.getListOfFacts(),
-                        getCurrentPlan());
-                }
-            }
-        } while ((changed == true) && (haveGoal == false));
-        if (0 == step_index) {
-            System.out.println("No implications applied");
+            } while ((changed == true) && (goalReached == false));              /* 9 */
+        } else {
+            this.productionSystem.add("No productions used");
         }
-        return haveGoal;
+        return goalReached;
+    }
+
+    /**
+     * This method checks if the implication we are working with will change
+     * working memory.
+     * @param imp
+     * @return true if we need to change working memory
+     */
+    private boolean isMemoryToBeChanged(Implication imp) {
+        if (true == imp.isConsequenceProvable(this.facts)) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * Method that shows current state of the forward chaining.
      * @param step_index
      * @param listOfFacts
-     * @param plan
+     * @param productionSystem
      */
     private void showStepInfo(int step_index, String listOfFacts, String plan) {
         System.out.println("After step nr: " + step_index);
@@ -82,8 +96,9 @@ public class DerivationMachine {
         System.out.println("  List of facts: " + this.facts.getListOfFacts());
         System.out.println("  Goal: " + this.goal);
         System.out.println("  Implications:");
-        for (Implication im : this.listOfImplications) {
-            System.out.println("    " + im.toString());
+        for (Object im : this.listOfImplications.getListOfImplications()) {
+            Implication imp = (Implication)im;
+            System.out.println("    " + imp.toString());
         }
         System.out.println();
     }
@@ -97,13 +112,13 @@ public class DerivationMachine {
     }
 
     /**
-     * Gets string representation if the current plan - list of the descriptors
+     * Gets string representation if the current productionSystem - list of the descriptors
      * used in forward chaining
      * @return
      */
-    public String getCurrentPlan() {
+    public String getCurrentProductionSystem() {
         String currentPlan = "{";
-        for (String s : this.plan) {
+        for (String s : this.productionSystem) {
             currentPlan = currentPlan + s + "; ";
         }
         return currentPlan.substring(0, currentPlan.length() - 2) + "}";
