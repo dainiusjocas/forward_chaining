@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE data SYSTEM "InputDescription.dtd">
+
+    <data>
+    ...
+    </data>
+-->
+
+<!ELEMENT data (goal|facts|implications)*>
+<!ELEMENT implications (implication)*>
+<!ELEMENT implication (consequent|antecedent)*>
+<!ATTLIST implication
+    id CDATA #IMPLIED
+  >
+<!ELEMENT antecedent (#PCDATA)>
+<!ELEMENT consequent (#PCDATA)>
+<!ELEMENT facts (fact)*>
+<!ELEMENT fact (#PCDATA)>
+<!ELEMENT goal (#PCDATA)>

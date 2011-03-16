@@ -1,30 +1,29 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package forwardchaining;
 
 /**
- * Data structure for storing implication.
- * @author dj
+ * Data structure for storing one implication.
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class Implication {
-    private String descriptor;
+    private String id;
     private String antecedent;
-    private String consequence;
+    private String consequent;
 
-
+    /**
+     * This constructor expects to get a string where one string is in format:
+     * [descriptor]: [<[antecedent1], [antecedent2], ..> [consequent]
+     * @param Implication
+     */
     public Implication(String Implication) {
-        this.descriptor = this.extractDescriptor(Implication);
+        this.id = this.extractDescriptor(Implication);
         this.antecedent = this.extractAntecedent(Implication);
-        this.consequence = this.extractConsequence(Implication);
+        this.consequent = this.extractConsequence(Implication);
     }
 
     /**
-     * Method which extracts descriptor part of the implication.
+     * Method which extracts id part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractDescriptor(String implication) {
         return implication.split(":")[0];
@@ -33,16 +32,16 @@ public class Implication {
     /**
      * Method which extracts antecedent part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractAntecedent(String implication) {
         return implication.split("->")[0].split(":")[1].trim();
     }
 
     /**
-     * Method which extracts consequence part of the implication.
+     * Method which extracts consequent part of the implication.
      * @param implication
-     * @return string that represent descriptor of implication
+     * @return string that represent id of implication
      */
     private String extractConsequence(String implication) {
         return implication.split("->")[1].trim();
@@ -53,18 +52,13 @@ public class Implication {
      * @return
      */
     public String getDescriptor() {
-        return this.descriptor;
+        return this.id;
     }
     public String getAntecedent() {
         return this.antecedent;
     }
     public String getConsequence() {
-        return this.consequence;
-    }
-
-    @Override
-    public String toString() {
-        return this.descriptor + ": " + this.antecedent + " -> " + this.consequence;
+        return this.consequent;
     }
 
     /**
@@ -81,5 +75,10 @@ public class Implication {
             }
         }
         return provable;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + ": " + this.antecedent + " -> " + this.consequent;
     }
 }

@@ -1,119 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package forwardchaining;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This class is for reading input file with following rules.
- * @author dj
+ * This interface describes the way that data readers should collect data.
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
-public class DataCollector {
-    public static String TERMINAL_WORD_FOR_PRODUCTIONS = "productions:";
-    public static String TERMINAL_WORD_FOR_FACTS = "facts:";
-    public static String TERMINAL_WORD_FOR_GOAL = "goal:";
-    public static char TERMINAL_SYMBOL_FOR_COMMENT = '#';
-
-
-    private BufferedReader bufferedReader;
+public interface DataCollector {
 
     /**
-     * This constructor receives URI of the file with data for program,
-     * initializes file reader, and marks the beginning of the file for better
-     * parsing of the file.
-     * @param fileURI - URI of the file
-     */
-    public DataCollector(String fileURI) {
-        fileURI = "src/InputData/input1.txt"; /* TODO: delete this line */
-        try {
-            bufferedReader = new BufferedReader(new FileReader(new File
-                    (fileURI)));
-            bufferedReader.mark(1);
-        } catch (FileNotFoundException e) {
-            System.out.println("The file You specified doesn't exist!");
-        } catch (IOException e) {
-            System.out.println("The file You specified is not valid!");
-        } catch (Exception e) {
-            System.out.println("Some general error occurred.");
-        }
-    }
-
-    /**
-     * Gets lines where are facts for the forward chaining.
+     * Method for collecting facts for further use in application
+     * @return ArrayList of names of facts where one name of the fact is a
+     * String
      * @throws IOException
      */
-    public String collectFacts() throws IOException {
-        this.bufferedReader.reset();
-        String temp = "";
-        String facts = "";
-        do {
-            temp = this.bufferedReader.readLine();
-        } while (!temp.toLowerCase().contains(DataCollector.
-                TERMINAL_WORD_FOR_FACTS));
-        temp = getFirstNotEmptyLine();
-        while ((temp != null) && (!temp.isEmpty()) &&
-                        (temp.charAt(0) != DataCollector.
-                        TERMINAL_SYMBOL_FOR_COMMENT)) {
-            facts = facts + temp;
-            temp = this.bufferedReader.readLine();
-        }
-        return facts;
-    }
-
-    public ArrayList collectProductions() throws IOException {
-        this.bufferedReader.reset();
-        String temp = "";
-        ArrayList listOfImplications = new ArrayList();
-        do {
-            temp = this.bufferedReader.readLine();
-        } while (!temp.toLowerCase().contains(DataCollector.
-                TERMINAL_WORD_FOR_PRODUCTIONS));
-        temp = getFirstNotEmptyLine();
-        while ((temp != null) && (!temp.isEmpty()) &&
-                        (temp.charAt(0) != DataCollector.
-                        TERMINAL_SYMBOL_FOR_COMMENT)) {
-            listOfImplications.add(temp.trim());
-            temp = this.bufferedReader.readLine();
-        }
-        return listOfImplications;
-    }
+    ArrayList<String> collectFacts() throws IOException;
 
     /**
-     * Method which finds goal in the input file
-     * @return
+     * Method for collecting implications for further use in the application
+     * @return ArrayList of implications where one implication is String
+     * formatted in that way:
+     *   [implication.id]: [<[ancedent1], [antecedent2]...>] -> [consequent]
      * @throws IOException
      */
-    public String collectGoal() throws IOException {
-        this.bufferedReader.reset();
-        String temp = "";
-        String goal = "";
-        do {
-            temp = this.bufferedReader.readLine();
-        } while (!temp.toLowerCase().contains(DataCollector.
-                TERMINAL_WORD_FOR_GOAL));
-        goal = getFirstNotEmptyLine();
-        return goal;
-    }
+    ArrayList<String> collectImplications() throws IOException;
 
     /**
-     * Method which skips all the empty lines in the file and returns first not
-     * empty line.
+     * Method which collects goal for the application
+     * @return a String wgich is a name of the goal
+     * @throws IOException
      */
-    private String getFirstNotEmptyLine() throws IOException {
-        String temporaryLine;
-        do {
-            temporaryLine = this.bufferedReader.readLine();
-        } while ((temporaryLine.isEmpty()) || 
-                (temporaryLine.charAt(0) == DataCollector.
-                TERMINAL_SYMBOL_FOR_COMMENT));
-        return temporaryLine;
-    }
+    String collectGoal() throws IOException;
 }
