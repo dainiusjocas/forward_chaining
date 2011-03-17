@@ -44,6 +44,15 @@ public class DerivationMachine {
     }
 
     /**
+     * Method for setting data collector.
+     * @param dataCollector object that specifies the way that data can be
+     * collected
+     */
+    public void setDataCollector(DataCollector dataCollector) {
+        this.dataCollector = dataCollector;
+    }
+
+    /**
      * This method implements forward chaining rule.
      * @return true if goal was reached, otherwise false
      */
@@ -59,7 +68,7 @@ public class DerivationMachine {
                     Implication imp = (Implication)im;
                     if (!(this.productionSystem.contains(imp.getDescriptor()))  /* 3 */
                            && (isMemoryToBeChanged(imp))) {
-                        this.facts.addFact(imp.getConsequence());
+                        this.facts.addFact(imp.getConsequent());
                         this.productionSystem.add(imp.getDescriptor());         /* 4 */
                         this.listOfImplications.removeImplication(imp);         /* 5 */
                         changed = true;
@@ -76,6 +85,59 @@ public class DerivationMachine {
             this.productionSystem.add("No productions used");
         }
         return goalReached;
+    }
+
+    public boolean doChaining() {
+        boolean isChanged = false;
+        boolean isGoalReached = false;
+        if (!(isGoalReached = isGoalReached()) == true) {
+            if (isGoalInConsequents()) { // if goal is in consequents than there is a sense to try to do chaining
+                while (isUnusedRuleLeft()) { // if we have unused facts then we can try to work in order to reach the goal
+                    isChanged = isNewFactProduced();
+                    if((isGoalReached = isGoalReached()) == true) {
+                        break;
+                    }
+                }
+            } else {
+                isGoalReached = false;
+            }
+        } else {
+            this.productionSystem.add("No production used");
+        }
+        return isGoalReached;
+    }
+
+    private boolean isNewFactProduced() {
+        return false;
+    }
+
+    /**
+     * Method that checks if there are unused facts
+     * @return true if the list of implications is not empty, otherwise - false
+     */
+    private boolean isUnusedRuleLeft() {
+        if (!this.listOfImplications.getListOfImplications().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Method that checks if we have goal in the list of implications as a
+     * consequent
+     * @return true if goal is in the list of consequents, otherwise - false
+     */
+    private boolean isGoalInConsequents() {
+        boolean goalIsInConsequents = false;
+        for (Object im : this.listOfImplications.getListOfImplications()) {
+            Implication implication = (Implication)im;
+            if (this.goal == null ? implication.getConsequent() == null : this.
+                    goal.equals(implication.getConsequent())) {
+                goalIsInConsequents = true;
+                break;
+            }
+        }
+        return goalIsInConsequents;
     }
 
     /**

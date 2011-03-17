@@ -57,7 +57,7 @@ public class Implication {
     public String getAntecedent() {
         return this.antecedent;
     }
-    public String getConsequence() {
+    public String getConsequent() {
         return this.consequent;
     }
 

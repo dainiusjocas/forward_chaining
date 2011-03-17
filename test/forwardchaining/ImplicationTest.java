@@ -78,7 +78,7 @@ public class ImplicationTest {
     public void testGetConsequence1() {
         String implication = "R1: A -> A";
         String expectedResult = "A";
-        String result = this.instance.getConsequence();
+        String result = this.instance.getConsequent();
         assertEquals(expectedResult, result);
     }
 
@@ -87,7 +87,7 @@ public class ImplicationTest {
         String implication = "R12: A, B, C, D, E -> Z";
         instance = new Implication(implication);
         String expectedResult = "Z";
-        String result = this.instance.getConsequence();
+        String result = this.instance.getConsequent();
         assertEquals(expectedResult, result);
     }
 

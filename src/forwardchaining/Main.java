@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Program that demonstrates the way that forward " +
                 "chaining works starts to work:\n");
-        String fileURI = args[0];
+        String fileURI = "src/InputData/input1.txt";//args[0];
         try{
             DataCollector dc;
             if (fileURI.contains(".xml")) {
