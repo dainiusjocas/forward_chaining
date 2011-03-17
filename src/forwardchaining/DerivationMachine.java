@@ -7,12 +7,12 @@ import java.util.ArrayList;
  * class is doForwardChaining, which impolement Forward Chaining principe.
  * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
-public class DerivationMachine {
+public abstract class DerivationMachine {
     /* Data structures used in application */
     ListOfImplications listOfImplications;
     Facts facts;
     ArrayList <String> productionSystem;
-    private String goal;
+    String goal;
     DataCollector dataCollector; /* Part of the strategy template */
 
     /**
@@ -41,6 +41,7 @@ public class DerivationMachine {
         this.listOfImplications = new ListOfImplications(this.dataCollector.collectImplications());
         this.facts = new Facts(this.dataCollector.collectFacts());
         this.goal = this.dataCollector.collectGoal();
+        this.productionSystem = new ArrayList();
     }
 
     /**
@@ -88,11 +89,11 @@ public class DerivationMachine {
     }
 
     public boolean doChaining() {
-        boolean isChanged = false;
+        boolean isChanged = true;
         boolean isGoalReached = false;
         if (!(isGoalReached = isGoalReached()) == true) {
             if (isGoalInConsequents()) { // if goal is in consequents than there is a sense to try to do chaining
-                while (isUnusedRuleLeft()) { // if we have unused facts then we can try to work in order to reach the goal
+                while (isUnusedRuleLeft() && isChanged) { // if we have unused facts then we can try to work in order to reach the goal
                     isChanged = isNewFactProduced();
                     if((isGoalReached = isGoalReached()) == true) {
                         break;
@@ -107,9 +108,11 @@ public class DerivationMachine {
         return isGoalReached;
     }
 
-    private boolean isNewFactProduced() {
-        return false;
-    }
+    /**
+     * Method to check if with current rule we can produce new facts.
+     * @return true if new fact is produced, otherwise - false.
+     */
+    abstract boolean isNewFactProduced();
 
     /**
      * Method that checks if there are unused facts
@@ -127,18 +130,7 @@ public class DerivationMachine {
      * consequent
      * @return true if goal is in the list of consequents, otherwise - false
      */
-    private boolean isGoalInConsequents() {
-        boolean goalIsInConsequents = false;
-        for (Object im : this.listOfImplications.getListOfImplications()) {
-            Implication implication = (Implication)im;
-            if (this.goal == null ? implication.getConsequent() == null : this.
-                    goal.equals(implication.getConsequent())) {
-                goalIsInConsequents = true;
-                break;
-            }
-        }
-        return goalIsInConsequents;
-    }
+    abstract boolean isGoalInConsequents();
 
     /**
      * This method checks if the implication we are working with will change
@@ -146,7 +138,7 @@ public class DerivationMachine {
      * @param imp
      * @return true if we need to change working memory
      */
-    private boolean isMemoryToBeChanged(Implication imp) {
+    protected boolean isMemoryToBeChanged(Implication imp) {
         if (true == imp.isConsequenceProvable(this.facts)) {
             return true;
         }

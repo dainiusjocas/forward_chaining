@@ -14,13 +14,13 @@ public class Client {
         String fileURI = "src/xml/4_9_implications.xml";
         try{
             DataCollector dc = new DataCollectorFromCommandLine();            
-            Facts facts = new Facts(dc.collectFacts());
-            String goal = dc.collectGoal();
-            ListOfImplications loi =
-                    new ListOfImplications(dc.collectImplications());
+//            Facts facts = new Facts(dc.collectFacts());
+//            String goal = dc.collectGoal();
+//            ListOfImplications loi =
+//                    new ListOfImplications(dc.collectImplications());
             System.out.println("Data for the program has been taken from " +
                     fileURI + " file.\n");
-            DerivationMachine dm = new DerivationMachine(loi, facts, goal);
+            DerivationMachine dm = new ForwardChaining(dc);
             dm.showData();
             if (dm.doForwardChaining()) {
                 System.out.println("GOAL IS REACHED!\n" + "Final list of facts is: "
