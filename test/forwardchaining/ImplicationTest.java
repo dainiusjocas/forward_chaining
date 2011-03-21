@@ -97,7 +97,7 @@ public class ImplicationTest {
         instance = new Implication(implication);
         Facts facts = new Facts("A, B, C");
         boolean expectedResult = true;
-        boolean result = instance.isConsequenceProvable(facts);
+        boolean result = instance.isConsequentProvable(facts);
         assertEquals(expectedResult, result);
     }
 
@@ -107,7 +107,7 @@ public class ImplicationTest {
         instance = new Implication(implication);
         Facts facts = new Facts("A");
         boolean expectedResult = true;
-        boolean result = instance.isConsequenceProvable(facts);
+        boolean result = instance.isConsequentProvable(facts);
         assertEquals(expectedResult, result);
     }
 
@@ -117,7 +117,7 @@ public class ImplicationTest {
         instance = new Implication(implication);
         Facts facts = new Facts("B");
         boolean expectedResult = false;
-        boolean result = instance.isConsequenceProvable(facts);
+        boolean result = instance.isConsequentProvable(facts);
         assertEquals(expectedResult, result);
     }
 
@@ -127,7 +127,7 @@ public class ImplicationTest {
         instance = new Implication(implication);
         Facts facts = new Facts("A, B");
         boolean expectedResult = true;
-        boolean result = instance.isConsequenceProvable(facts);
+        boolean result = instance.isConsequentProvable(facts);
         assertEquals(expectedResult, result);
     }
 
@@ -137,7 +137,7 @@ public class ImplicationTest {
         instance = new Implication(implication);
         Facts facts = new Facts("A, C");
         boolean expectedResult = false;
-        boolean result = instance.isConsequenceProvable(facts);
+        boolean result = instance.isConsequentProvable(facts);
         assertEquals(expectedResult, result);
     }
 }

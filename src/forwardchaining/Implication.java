@@ -66,7 +66,7 @@ public class Implication {
      * @param facts
      * @return
      */
-    public boolean isConsequenceProvable(Facts facts) {
+    public boolean isConsequentProvable(Facts facts) {
         String[] splittedAntecedent = this.antecedent.split(",");
         boolean provable = true;
         for (String a : splittedAntecedent) {

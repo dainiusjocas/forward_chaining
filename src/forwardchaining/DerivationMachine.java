@@ -3,8 +3,9 @@ package forwardchaining;
 import java.util.ArrayList;
 
 /**
- * This class if for applicating logial derivations. The main method of the
- * class is doForwardChaining, which impolement Forward Chaining principe.
+ * This class if for using logical derivations. The main method of the
+ * class is doChaining, which implement Forward Chaining or Backward Chaining
+ * algorithm.
  * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public abstract class DerivationMachine {
@@ -139,7 +140,7 @@ public abstract class DerivationMachine {
      * @return true if we need to change working memory
      */
     protected boolean isMemoryToBeChanged(Implication imp) {
-        if (true == imp.isConsequenceProvable(this.facts)) {
+        if (true == imp.isConsequentProvable(this.facts)) {
             return true;
         }
         return false;

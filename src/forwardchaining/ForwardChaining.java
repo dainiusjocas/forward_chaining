@@ -1,8 +1,9 @@
 package forwardchaining;
 
 /**
- *
- * @author Dainius
+ * This class is for implementing logical derivations with forward-chaining
+ * algorithm.
+ * @author Dainius Jocas, VU MIF, PS#3, 3rd year
  */
 public class ForwardChaining extends DerivationMachine {
 
@@ -33,6 +34,11 @@ public class ForwardChaining extends DerivationMachine {
         return goalIsInConsequents;
     }
 
+    /**
+     * This method checks if new fact can be produced. And search of new facts
+     * is organized in a way of forward chaining algorithm.
+     * @return true if new fact was produced, otherwise - false
+     */
     boolean isNewFactProduced() {
         for (Object im : this.listOfImplications.
                 getListOfImplications()) {
