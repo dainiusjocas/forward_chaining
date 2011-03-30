@@ -5,6 +5,7 @@
 
 package forwardchaining;
 
+import chaining.Facts;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
